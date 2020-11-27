@@ -1,0 +1,25 @@
+{
+    "name": "mshumakov/decision-theory",
+    "description": "Implementation of decision theory mechanisms.",
+    "type": "library",
+    "license": "GPL-3.0-only",
+    "keywords": ["php-library", "php", "decision-theory"],
+    "authors": [
+        {
+            "name": "Maksim Shumakov",
+            "email": "ms.profile.dev@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "MSdev\\Component\\DecisionTheory\\": "src/",
+            "Test\\MSdev\\Component\\DecisionTheory\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^7.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0"
+    }
+}
