@@ -1,0 +1,2 @@
+# decision-theory
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/6d87a70aae3742bd89d3d2236fc2eb88)](https://app.codacy.com/gh/mshumakov/decision-theory?utm_source=github.com&utm_medium=referral&utm_content=mshumakov/decision-theory&utm_campaign=Badge_Grade)
