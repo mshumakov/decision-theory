@@ -4,14 +4,15 @@ namespace Test\MSdev\Component\DecisionTheory;
 
 use MSdev\Component\DecisionTheory\DecisionService;
 use PHPUnit\Framework\TestCase;
+use TypeError;
 
 class DecisionServiceTest extends TestCase
 {
-    public function testGetMethod(): void
+    public function testProcessingWithoutParametersHandle(): void
     {
-        $this->expectExceptionMessage('Not implemented');
+        $this->expectException(TypeError::class);
 
         $decisionService = new DecisionService();
-        $decisionService->getMethod();
+        $decisionService->handle();
     }
 }
