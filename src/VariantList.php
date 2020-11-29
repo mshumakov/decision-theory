@@ -16,11 +16,11 @@ class VariantList
     }
 
     /**
-     * @param VariantInterface $variant
+     * @param VariantDtoInterface $variant
      *
      * @return $this
      */
-    public function append(VariantInterface $variant): self
+    public function append(VariantDtoInterface $variant): self
     {
         $this->list[] = $variant;
 

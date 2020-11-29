@@ -7,13 +7,18 @@ class DecisionService
     /**
      * Process the options and return a sorted list based on key criteria.
      *
-     * @param TypeInterface $type
-     * @param VariantList   $list
+     * @param CriteriaInterface $criteria
+     * @param VariantList       $variants
      *
      * @return array
      */
-    public function handle(TypeInterface $type, VariantList $list): array
+    public function handle(CriteriaInterface $criteria, VariantList $variants): array
     {
-        return [];
+        // Temporary plug.
+        if (!$criteria instanceof Criteria) {
+            return [];
+        }
+
+        return $variants->getList();
     }
 }
