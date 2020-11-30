@@ -2,12 +2,23 @@
 
 namespace MSdev\Component\DecisionTheory;
 
-use RuntimeException;
-
 class DecisionService
 {
-    public function getMethod(): void
+    /**
+     * Process the options and return a sorted list based on key criteria.
+     *
+     * @param CriteriaInterface $criteria
+     * @param VariantList       $variants
+     *
+     * @return array
+     */
+    public function handle(CriteriaInterface $criteria, VariantList $variants): array
     {
-        throw new RuntimeException('Not implemented');
+        // Temporary plug.
+        if (!$criteria instanceof Criteria) {
+            return [];
+        }
+
+        return $variants->getList();
     }
 }
