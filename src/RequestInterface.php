@@ -2,6 +2,6 @@
 
 namespace MSdev\Component\DecisionTheory;
 
-interface VariantDtoInterface
+interface RequestInterface
 {
 }

@@ -8,21 +8,14 @@ namespace MSdev\Component\DecisionTheory;
 class DecisionService
 {
     /**
-     * Process the options and return a sorted list based on key criteria.
+     * ...
      *
-     * @param CriteriaInterface $criteria
-     * @param VariantList       $variants
+     * @param RequestInterface $request
      *
-     * @todo[mshumakov]: Return an instance of the class with variant data (access to the best and worst options).
-     * @return array
+     * @return ResponseInterface
      */
-    public function handle(CriteriaInterface $criteria, VariantList $variants): array
+    public function handle(RequestInterface $request): ResponseInterface
     {
-        // Temporary plug.
-        if (!$criteria instanceof Criteria) {
-            return [];
-        }
-
-        return $variants->getList();
+        return new Response();
     }
 }
