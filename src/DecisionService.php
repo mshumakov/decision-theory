@@ -2,6 +2,9 @@
 
 namespace MSdev\Component\DecisionTheory;
 
+/**
+ * Decision service based on passed options.
+ */
 class DecisionService
 {
     /**
@@ -10,6 +13,7 @@ class DecisionService
      * @param CriteriaInterface $criteria
      * @param VariantList       $variants
      *
+     * @todo[mshumakov]: Return an instance of the class with variant data (access to the best and worst options).
      * @return array
      */
     public function handle(CriteriaInterface $criteria, VariantList $variants): array
