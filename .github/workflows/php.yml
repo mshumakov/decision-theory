@@ -25,9 +25,13 @@ jobs:
           key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
           restore-keys: |
             ${{ runner.os }}-composer
+
       - name: Install dependencies
+        uses: php-actions/composer@v5
+        with:
+          php_version: 7.3
+          version: 1
         if: steps.composer-cache.outputs.cache-hit != 'true'
-        run: composer install --prefer-dist --no-progress --no-suggest
 
       - name: Run tests (phpunit)
         run: vendor/bin/phpunit -c phpunit.xml.dist
@@ -35,15 +39,15 @@ jobs:
       - name: Get coverage (phpunit)
         run: vendor/bin/phpunit --coverage-clover=coverage.xml
 
-      - uses: codecov/codecov-action@v1
-        with:
-          file: ./coverage.xml
-          flags: unittests
-          name: codecov-umbrella
-          fail_ci_if_error: true
+#      - uses: codecov/codecov-action@v1
+#        with:
+#          files: ./coverage.xml
+#          flags: unittests
+#          name: codecov-umbrella
+#          fail_ci_if_error: true
 
-      - name: Run codacy-coverage-reporter
-        uses: codacy/codacy-coverage-reporter-action@master
-        with:
-          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
-          coverage-reports: coverage.xml
+#      - name: Run codacy-coverage-reporter
+#        uses: codacy/codacy-coverage-reporter-action@master
+#        with:
+#          project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
+#          coverage-reports: coverage.xml

@@ -2,23 +2,18 @@
 
 namespace MSdev\Component\DecisionTheory;
 
-class DecisionService
+use RuntimeException;
+
+/**
+ * Service for making a decision based on the transmitted data and criteria for their assessment.
+ */
+final class DecisionService implements DecisionServiceInterface
 {
     /**
-     * Process the options and return a sorted list based on key criteria.
-     *
-     * @param CriteriaInterface $criteria
-     * @param VariantList       $variants
-     *
-     * @return array
+     * @inheritDoc
      */
-    public function handle(CriteriaInterface $criteria, VariantList $variants): array
+    public function handle(): bool
     {
-        // Temporary plug.
-        if (!$criteria instanceof Criteria) {
-            return [];
-        }
-
-        return $variants->getList();
+        throw new RuntimeException('Not implemented.');
     }
 }
