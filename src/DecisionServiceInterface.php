@@ -5,9 +5,9 @@ namespace MSdev\Component\DecisionTheory;
 interface DecisionServiceInterface
 {
     /**
-     * Process the options and return a sorted list based on key criteria.
+     * @param Variant $variant
      *
      * @return bool
      */
-    public function handle(): bool;
+    public function handle(Variant $variant): bool;
 }

@@ -12,7 +12,7 @@ final class DecisionService implements DecisionServiceInterface
     /**
      * @inheritDoc
      */
-    public function handle(): bool
+    public function handle(Variant $variant): bool
     {
         throw new RuntimeException('Not implemented.');
     }
