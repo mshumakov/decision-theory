@@ -17,4 +17,36 @@ class DecisionServiceTest extends TestCase
             new Variant('some super id', [])
         );
     }
+
+    /**
+     * @link https://edu.susu.ru/mod/resource/view.php?id=3010310
+     */
+    public function testMultiCriteriaJob(): void
+    {
+        self::markTestSkipped('Not implemented.');
+    }
+
+    /**
+     * @link https://edu.susu.ru/mod/resource/view.php?id=3010375
+     */
+    public function testCollectiveSolutions(): void
+    {
+        self::markTestSkipped('Not implemented.');
+    }
+
+    /**
+     * @link https://edu.susu.ru/mod/resource/view.php?id=3010340
+     */
+    public function testDecisionMakingUnderUncertainty(): void
+    {
+        self::markTestSkipped('Not implemented.');
+    }
+
+    /**
+     * @link https://edu.susu.ru/mod/resource/view.php?id=3010330
+     */
+    public function testDecisionMakingUnderRisk(): void
+    {
+        self::markTestSkipped('Not implemented.');
+    }
 }
