@@ -1,52 +1,42 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Test\MSdev\Component\DecisionTheory;
 
 use MSdev\Component\DecisionTheory\DecisionService;
-use MSdev\Component\DecisionTheory\Variant;
+use MSdev\Component\DecisionTheory\Handler\NullHandler;
+use MSdev\Component\DecisionTheory\ValueObject\DataSet;
 use PHPUnit\Framework\TestCase;
-use RuntimeException;
 
 class DecisionServiceTest extends TestCase
 {
-    public function testProcessingWithEmptyVariantList(): void
-    {
-        $this->expectException(RuntimeException::class);
+    /** @var DecisionService */
+    private $decisionService;
 
-        (new DecisionService())->handle(
-            new Variant('some super id', [])
+    protected function setUp(): void
+    {
+        parent::setUp();
+
+        $this->decisionService = new DecisionService();
+        $this->decisionService->setHandler(new NullHandler());
+    }
+
+    public function testProcessingWithEmptyDataSet(): void
+    {
+        $condition = $this->decisionService->process(new DataSet());
+
+        self::assertFalse($condition);
+        self::assertEquals(
+            new NullHandler(),
+            $this->decisionService->getHandler()
         );
     }
 
-    /**
-     * @link https://edu.susu.ru/mod/resource/view.php?id=3010310
-     */
-    public function testMultiCriteriaJob(): void
+    public function testProcessingWithDataSetNumber(): void
     {
-        self::markTestSkipped('Not implemented.');
-    }
+        $condition = $this->decisionService->process(new DataSet([1, 2, 3]));
 
-    /**
-     * @link https://edu.susu.ru/mod/resource/view.php?id=3010375
-     */
-    public function testCollectiveSolutions(): void
-    {
-        self::markTestSkipped('Not implemented.');
-    }
-
-    /**
-     * @link https://edu.susu.ru/mod/resource/view.php?id=3010340
-     */
-    public function testDecisionMakingUnderUncertainty(): void
-    {
-        self::markTestSkipped('Not implemented.');
-    }
-
-    /**
-     * @link https://edu.susu.ru/mod/resource/view.php?id=3010330
-     */
-    public function testDecisionMakingUnderRisk(): void
-    {
-        self::markTestSkipped('Not implemented.');
+        self::assertTrue($condition);
     }
 }
