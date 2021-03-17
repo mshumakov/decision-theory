@@ -15,6 +15,8 @@ class HierarchyAnalysisMethodHandler extends Handler
      */
     public function handle(DataSetInterface $dataSet): DataSetResultInterface
     {
+        // @todo[mshumakov]: Add logic.
+
         return new DataSetResult();
     }
 }
