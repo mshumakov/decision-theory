@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace MSdev\Component\DecisionTheory\Handler;
 
 use MSdev\Component\DecisionTheory\ValueObject\DataSetInterface;
+use MSdev\Component\DecisionTheory\ValueObject\DataSetResult;
 use MSdev\Component\DecisionTheory\ValueObject\DataSetResultInterface;
 
 abstract class Handler
@@ -12,15 +13,15 @@ abstract class Handler
     /**
      * @param DataSetInterface $dataSet
      *
-     * @return bool
+     * @return DataSetResultInterface
      */
-    public function process(DataSetInterface $dataSet): bool
+    public function process(DataSetInterface $dataSet): DataSetResultInterface
     {
         if ($dataSet->isEmpty()) {
-            return false;
+            return new DataSetResult();
         }
 
-        return $this->handle($dataSet)->isSuccess();
+        return $this->handle($dataSet);
     }
 
     /**

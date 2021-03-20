@@ -21,4 +21,12 @@ class DataSet implements DataSetInterface
     {
         return empty($this->list);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getList(): array
+    {
+        return $this->list;
+    }
 }

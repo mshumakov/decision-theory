@@ -7,6 +7,7 @@ namespace Test\MSdev\Component\DecisionTheory;
 use MSdev\Component\DecisionTheory\DecisionService;
 use MSdev\Component\DecisionTheory\Handler\NullHandler;
 use MSdev\Component\DecisionTheory\ValueObject\DataSet;
+use MSdev\Component\DecisionTheory\ValueObject\Variant;
 use PHPUnit\Framework\TestCase;
 
 class DecisionServiceTest extends TestCase
@@ -24,19 +25,25 @@ class DecisionServiceTest extends TestCase
 
     public function testProcessingWithEmptyDataSet(): void
     {
-        $condition = $this->decisionService->process(new DataSet());
+        $dataSetResult = $this->decisionService->process(new DataSet());
 
-        self::assertFalse($condition);
+        self::assertFalse($dataSetResult->isSuccess());
         self::assertEquals(
             new NullHandler(),
             $this->decisionService->getHandler()
         );
     }
 
-    public function testProcessingWithDataSetNumber(): void
+    public function testProcessingWithDataSet(): void
     {
-        $condition = $this->decisionService->process(new DataSet([1, 2, 3]));
+        $dataSet = new DataSet([
+            new Variant('UUID_01', 'Variant 01', [99.5, 10, 50, 132]),
+            new Variant('UUID_02', 'Variant 02', [100.5, 20, 51, 143.2]),
+            new Variant('UUID_03', 'Variant 03', [89.5, 15, 43.1, 122]),
+        ]);
 
-        self::assertTrue($condition);
+        $dataSetResult = $this->decisionService->process($dataSet);
+
+        self::assertTrue($dataSetResult->isSuccess());
     }
 }
