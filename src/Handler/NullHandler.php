@@ -15,6 +15,6 @@ class NullHandler extends Handler
      */
     public function handle(DataSetInterface $dataSet): DataSetResultInterface
     {
-        return new DataSetResult();
+        return new DataSetResult($dataSet->getList());
     }
 }

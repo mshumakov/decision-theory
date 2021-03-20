@@ -24,19 +24,19 @@ class DecisionServiceTest extends TestCase
 
     public function testProcessingWithEmptyDataSet(): void
     {
-        $condition = $this->decisionService->process(new DataSet());
+        $dataSetResult = $this->decisionService->process(new DataSet());
 
-        self::assertFalse($condition);
+        self::assertFalse($dataSetResult->isSuccess());
         self::assertEquals(
             new NullHandler(),
             $this->decisionService->getHandler()
         );
     }
 
-    public function testProcessingWithDataSetNumber(): void
+    public function testProcessingWithDataSet(): void
     {
-        $condition = $this->decisionService->process(new DataSet([1, 2, 3]));
+        $dataSetResult = $this->decisionService->process(new DataSet([1, 2, 3]));
 
-        self::assertTrue($condition);
+        self::assertTrue($dataSetResult->isSuccess());
     }
 }

@@ -6,14 +6,27 @@ namespace MSdev\Component\DecisionTheory\ValueObject;
 
 class DataSetResult implements DataSetResultInterface
 {
-    /** @var bool */
-    private $isSuccess = true;
+    /** @var array */
+    private $list;
+
+    public function __construct(array $list = [])
+    {
+        $this->list = $list;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getList(): array
+    {
+        return $this->list;
+    }
 
     /**
      * @inheritDoc
      */
     public function isSuccess(): bool
     {
-        return $this->isSuccess;
+        return !empty($this->list);
     }
 }
