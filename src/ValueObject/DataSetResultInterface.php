@@ -7,7 +7,7 @@ namespace MSdev\Component\DecisionTheory\ValueObject;
 interface DataSetResultInterface
 {
     /**
-     * @return array
+     * @return Variant[]
      */
     public function getList(): array;
 

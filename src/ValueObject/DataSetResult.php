@@ -6,7 +6,7 @@ namespace MSdev\Component\DecisionTheory\ValueObject;
 
 class DataSetResult implements DataSetResultInterface
 {
-    /** @var array */
+    /** @var Variant[] */
     private $list;
 
     public function __construct(array $list = [])
