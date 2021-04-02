@@ -7,6 +7,7 @@ namespace Test\MSdev\Component\DecisionTheory;
 use MSdev\Component\DecisionTheory\DecisionService;
 use MSdev\Component\DecisionTheory\Handler\NullHandler;
 use MSdev\Component\DecisionTheory\ValueObject\DataSet;
+use MSdev\Component\DecisionTheory\ValueObject\DataSetResult;
 use MSdev\Component\DecisionTheory\ValueObject\Property;
 use MSdev\Component\DecisionTheory\ValueObject\Variant;
 use PHPUnit\Framework\TestCase;
@@ -50,6 +51,6 @@ class DecisionServiceTest extends TestCase
 
         $dataSetResult = $this->decisionService->process($dataSet);
 
-        self::assertTrue($dataSetResult->isSuccess());
+        self::assertEquals(new DataSetResult(), $dataSetResult);
     }
 }

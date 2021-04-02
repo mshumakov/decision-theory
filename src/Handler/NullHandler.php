@@ -4,17 +4,15 @@ declare(strict_types=1);
 
 namespace MSdev\Component\DecisionTheory\Handler;
 
-use MSdev\Component\DecisionTheory\ValueObject\DataSetInterface;
-use MSdev\Component\DecisionTheory\ValueObject\DataSetResult;
-use MSdev\Component\DecisionTheory\ValueObject\DataSetResultInterface;
+use MSdev\Component\DecisionTheory\ValueObject\Variant;
 
 class NullHandler extends Handler
 {
     /**
      * @inheritDoc
      */
-    public function handle(DataSetInterface $dataSet): DataSetResultInterface
+    public function calculate(Variant $variant): ?float
     {
-        return new DataSetResult($dataSet->getList());
+        return null;
     }
 }

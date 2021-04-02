@@ -4,9 +4,7 @@ declare(strict_types=1);
 
 namespace MSdev\Component\DecisionTheory\Handler;
 
-use MSdev\Component\DecisionTheory\ValueObject\DataSetInterface;
-use MSdev\Component\DecisionTheory\ValueObject\DataSetResult;
-use MSdev\Component\DecisionTheory\ValueObject\DataSetResultInterface;
+use MSdev\Component\DecisionTheory\ValueObject\Variant;
 
 /**
  * [Описание]
@@ -50,20 +48,8 @@ class MainCriterionMethodHandler extends Handler
      *
      * @link https://edu.susu.ru/pluginfile.php/5525155/mod_resource/content/3/L_r_02.pdf
      */
-    public function handle(DataSetInterface $dataSet): DataSetResultInterface
+    public function calculate(Variant $variant): ?float
     {
-        $list = [];
-
-        foreach ($dataSet->getList() as $variant) {
-            if (!$variant->isEmpty()) {
-                // @todo[mshumakov]: Add logic (this example).
-                $list[$variant->getKey()] = $variant->getProperties()[0]->getData()[0];
-            }
-        }
-
-        asort($list, SORT_NUMERIC);
-        $list = array_reverse($list);
-
-        return new DataSetResult($list);
+        return $variant->getProperties()[0]->getData()[0];
     }
 }
