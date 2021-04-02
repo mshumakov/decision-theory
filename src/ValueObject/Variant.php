@@ -28,7 +28,7 @@ class Variant implements VariantInterface
     /**
      * @inheritDoc
      */
-    public function getVariants(): array
+    public function getProperties(): array
     {
         return $this->properties;
     }

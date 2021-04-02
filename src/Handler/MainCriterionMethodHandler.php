@@ -47,12 +47,23 @@ class MainCriterionMethodHandler extends Handler
      * ]
      *
      * @inheritDoc
+     *
+     * @link https://edu.susu.ru/pluginfile.php/5525155/mod_resource/content/3/L_r_02.pdf
      */
     public function handle(DataSetInterface $dataSet): DataSetResultInterface
     {
-        // @todo[mshumakov]: Add logic.
-        // @link https://edu.susu.ru/pluginfile.php/5525155/mod_resource/content/3/L_r_02.pdf
+        $list = [];
 
-        return new DataSetResult();
+        foreach ($dataSet->getList() as $variant) {
+            if (!$variant->isEmpty()) {
+                // @todo[mshumakov]: Add logic (this example).
+                $list[$variant->getKey()] = $variant->getProperties()[0]->getData()[0];
+            }
+        }
+
+        asort($list, SORT_NUMERIC);
+        $list = array_reverse($list);
+
+        return new DataSetResult($list);
     }
 }

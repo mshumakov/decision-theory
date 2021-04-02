@@ -12,9 +12,9 @@ interface VariantInterface
     public function getKey(): string;
 
     /**
-     * @return Variant[]
+     * @return Property[]
      */
-    public function getVariants(): array;
+    public function getProperties(): array;
 
     /**
      * @return bool
