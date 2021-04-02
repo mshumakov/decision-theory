@@ -12,12 +12,12 @@ interface VariantInterface
     public function getKey(): string;
 
     /**
-     * @return string
+     * @return Variant[]
      */
-    public function getDescription(): string;
+    public function getVariants(): array;
 
     /**
-     * @return array
+     * @return bool
      */
-    public function getData(): array;
+    public function isEmpty(): bool;
 }

@@ -8,16 +8,13 @@ class Variant implements VariantInterface
 {
     /** @var string */
     private $key;
-    /** @var string */
-    private $description;
-    /** @var array */
-    private $data;
+    /** @var Property[] */
+    private $properties;
 
-    public function __construct(string $key, string $description, array $data = [])
+    public function __construct(string $key, array $properties = [])
     {
-        $this->key         = $key;
-        $this->description = $description;
-        $this->data        = $data;
+        $this->key        = $key;
+        $this->properties = $properties;
     }
 
     /**
@@ -31,16 +28,16 @@ class Variant implements VariantInterface
     /**
      * @inheritDoc
      */
-    public function getDescription(): string
+    public function getVariants(): array
     {
-        return $this->description;
+        return $this->properties;
     }
 
     /**
      * @inheritDoc
      */
-    public function getData(): array
+    public function isEmpty(): bool
     {
-        return $this->data;
+        return empty($this->properties);
     }
 }
