@@ -48,7 +48,7 @@ class MainCriterionMethodHandler extends Handler
      *
      * @link https://edu.susu.ru/pluginfile.php/5525155/mod_resource/content/3/L_r_02.pdf
      */
-    public function calculate(Variant $variant): ?float
+    public function handle(Variant $variant): ?float
     {
         return $variant->getProperties()[0]->getData()[0];
     }

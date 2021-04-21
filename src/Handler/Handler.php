@@ -22,7 +22,7 @@ abstract class Handler
             return new DataSetResult();
         }
 
-        return $this->handle($dataSet);
+        return $this->calculate($dataSet);
     }
 
     /**
@@ -30,12 +30,12 @@ abstract class Handler
      *
      * @return DataSetResultInterface
      */
-    public function handle(DataSetInterface $dataSet)
+    public function calculate(DataSetInterface $dataSet)
     {
         $list = [];
 
         foreach ($dataSet->getList() as $variant) {
-            $solutionValue = $this->calculate($variant);
+            $solutionValue = $this->handle($variant);
 
             if ((null !== $solutionValue) && !$variant->isEmpty()) {
                 $list[$variant->getKey()] = $solutionValue;
@@ -53,5 +53,5 @@ abstract class Handler
      *
      * @return float|null
      */
-    abstract public function calculate(Variant $variant): ?float;
+    abstract public function handle(Variant $variant): ?float;
 }

@@ -26,7 +26,7 @@ class MainCriterionMethodHandlerTest extends TestCase
 
     public function testMainCriterionMethodWithEmptyDataSet(): void
     {
-        $condition = $this->handler->handle(new DataSet());
+        $condition = $this->handler->calculate(new DataSet());
 
         self::assertEquals(new DataSetResult(), $condition);
     }

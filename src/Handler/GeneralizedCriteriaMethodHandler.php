@@ -11,7 +11,7 @@ class GeneralizedCriteriaMethodHandler extends Handler
     /**
      * @inheritDoc
      */
-    public function calculate(Variant $variant): ?float
+    public function handle(Variant $variant): ?float
     {
         return null;
     }
