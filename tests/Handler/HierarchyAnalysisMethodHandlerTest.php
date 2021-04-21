@@ -24,7 +24,7 @@ class HierarchyAnalysisMethodHandlerTest extends TestCase
 
     public function testHierarchyAnalysisMethodWithEmptyDataSet(): void
     {
-        $condition = $this->handler->handle(new DataSet());
+        $condition = $this->handler->calculate(new DataSet());
 
         self::assertEquals(new DataSetResult(), $condition);
     }
