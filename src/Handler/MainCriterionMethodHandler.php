@@ -44,8 +44,6 @@ class MainCriterionMethodHandler extends Handler
      *   x1, x2      >= 0.
      * ]
      *
-     * @inheritDoc
-     *
      * @link https://edu.susu.ru/pluginfile.php/5525155/mod_resource/content/3/L_r_02.pdf
      */
     public function handle(Variant $variant): ?float
