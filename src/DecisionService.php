@@ -16,11 +16,6 @@ final class DecisionService implements DecisionServiceInterface
     /** @var Handler */
     private $handler;
 
-    /**
-     * @param Handler $handler
-     *
-     * @return $this
-     */
     public function setHandler(Handler $handler): DecisionService
     {
         $this->handler = $handler;
@@ -28,17 +23,11 @@ final class DecisionService implements DecisionServiceInterface
         return $this;
     }
 
-    /**
-     * @return Handler
-     */
     public function getHandler(): Handler
     {
         return $this->handler;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function process(DataSetInterface $dataSet): DataSetResultInterface
     {
         return $this->handler->process($dataSet);

@@ -20,25 +20,16 @@ class Property implements PropertyInterface
         $this->parameter   = $parameter;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getData(): array
     {
         return $this->data;
     }
 
-    /**
-     * @return ParameterInterface
-     */
     public function getParameter(): ?ParameterInterface
     {
         return $this->parameter;

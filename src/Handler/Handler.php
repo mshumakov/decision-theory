@@ -11,11 +11,6 @@ use MSdev\Component\DecisionTheory\ValueObject\Variant;
 
 abstract class Handler
 {
-    /**
-     * @param DataSetInterface $dataSet
-     *
-     * @return DataSetResultInterface
-     */
     public function process(DataSetInterface $dataSet): DataSetResultInterface
     {
         if ($dataSet->isEmpty()) {
@@ -25,12 +20,7 @@ abstract class Handler
         return $this->calculate($dataSet);
     }
 
-    /**
-     * @param DataSetInterface $dataSet
-     *
-     * @return DataSetResultInterface
-     */
-    public function calculate(DataSetInterface $dataSet)
+    public function calculate(DataSetInterface $dataSet): DataSetResultInterface
     {
         $list = [];
 
@@ -48,10 +38,5 @@ abstract class Handler
         return new DataSetResult($list);
     }
 
-    /**
-     * @param Variant $variant
-     *
-     * @return float|null
-     */
     abstract public function handle(Variant $variant): ?float;
 }

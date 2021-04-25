@@ -14,17 +14,11 @@ class DataSet implements DataSetInterface
         $this->list = $list;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function isEmpty(): bool
     {
         return empty($this->list);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getList(): array
     {
         return $this->list;

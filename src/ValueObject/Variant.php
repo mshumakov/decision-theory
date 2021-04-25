@@ -17,25 +17,16 @@ class Variant implements VariantInterface
         $this->properties = $properties;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getKey(): string
     {
         return $this->key;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getProperties(): array
     {
         return $this->properties;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function isEmpty(): bool
     {
         return empty($this->properties);

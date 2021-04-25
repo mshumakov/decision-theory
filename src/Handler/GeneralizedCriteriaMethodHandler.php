@@ -8,9 +8,6 @@ use MSdev\Component\DecisionTheory\ValueObject\Variant;
 
 class GeneralizedCriteriaMethodHandler extends Handler
 {
-    /**
-     * @inheritDoc
-     */
     public function handle(Variant $variant): ?float
     {
         return null;

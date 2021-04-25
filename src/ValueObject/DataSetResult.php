@@ -14,17 +14,11 @@ class DataSetResult implements DataSetResultInterface
         $this->list = $list;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function getList(): array
     {
         return $this->list;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function isSuccess(): bool
     {
         return !empty($this->list);
