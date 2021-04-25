@@ -10,11 +10,14 @@ class Property implements PropertyInterface
     private $description;
     /** @var array */
     private $data;
+    /** @var ParameterInterface */
+    private $parameter;
 
-    public function __construct(string $description, array $data = [])
+    public function __construct(string $description, array $data = [], ParameterInterface $parameter = null)
     {
         $this->description = $description;
         $this->data        = $data;
+        $this->parameter   = $parameter;
     }
 
     /**
@@ -31,5 +34,13 @@ class Property implements PropertyInterface
     public function getData(): array
     {
         return $this->data;
+    }
+
+    /**
+     * @return ParameterInterface
+     */
+    public function getParameter(): ?ParameterInterface
+    {
+        return $this->parameter;
     }
 }
