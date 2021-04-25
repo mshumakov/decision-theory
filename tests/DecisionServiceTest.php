@@ -25,7 +25,7 @@ class DecisionServiceTest extends TestCase
         $this->decisionService->setHandler(new NullHandler());
     }
 
-    public function testProcessingWithEmptyDataSet(): void
+    public function testProcessingWithEmptyDataSetByNullHandler(): void
     {
         $dataSetResult = $this->decisionService->process(new DataSet());
 
@@ -36,7 +36,7 @@ class DecisionServiceTest extends TestCase
         );
     }
 
-    public function testProcessingWithDataSet(): void
+    public function testProcessingWithDataSetByNullHandler(): void
     {
         $dataSet = new DataSet([
             new Variant('UUID_1', [
