@@ -36,7 +36,7 @@ class DecisionServiceTest extends TestCase
         );
     }
 
-    public function testProcessingWithDataSet(): void
+    public function testProcessingWithDataSetByNullHandler(): void
     {
         $dataSet = new DataSet([
             new Variant('UUID_1', [
