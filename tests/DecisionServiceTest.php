@@ -25,7 +25,7 @@ class DecisionServiceTest extends TestCase
         $this->decisionService->setHandler(new NullHandler());
     }
 
-    public function testProcessingWithEmptyDataSet(): void
+    public function testProcessingWithEmptyDataSetByNullHandler(): void
     {
         $dataSetResult = $this->decisionService->process(new DataSet());
 
