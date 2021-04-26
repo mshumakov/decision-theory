@@ -34,11 +34,11 @@ class MainCriterionMethodHandlerTest extends TestCase
     public function testMainCriterionMethod(): void
     {
         $dataSet = new DataSet([
-            new Variant('UUID_1', [
+            new Variant('UUID_1', false, [
                 new Property('x1', [21]),
                 new Property('x2', [15]),
             ]),
-            new Variant('UUID_2', [
+            new Variant('UUID_2', true, [
                 new Property('x1', [22]),
                 new Property('x2', [8]),
             ])
@@ -46,6 +46,6 @@ class MainCriterionMethodHandlerTest extends TestCase
 
         $condition = $this->handler->process($dataSet);
 
-        self::assertEquals(22, current($condition->getList()));
+        self::assertEquals(['UUID_2'], array_keys($condition->getList()));
     }
 }

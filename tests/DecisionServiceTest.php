@@ -39,11 +39,11 @@ class DecisionServiceTest extends TestCase
     public function testProcessingWithDataSetByNullHandler(): void
     {
         $dataSet = new DataSet([
-            new Variant('UUID_1', [
+            new Variant('UUID_1', false, [
                 new Property( 'x1', [10]),
                 new Property( 'x2', [15]),
             ]),
-            new Variant('UUID_2', [
+            new Variant('UUID_2', true, [
                 new Property( 'x1', [17]),
                 new Property( 'x2', [8]),
             ])
