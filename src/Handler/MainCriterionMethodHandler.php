@@ -48,6 +48,18 @@ class MainCriterionMethodHandler extends Handler
      */
     public function handle(Variant $variant): ?float
     {
-        return $variant->getProperties()[0]->getData()[0];
+        if (!$variant->isObjectiveFunction()) {
+            return null;
+        }
+
+        $properties = $variant->getProperties();
+
+        $keyX1 = 1;
+        $keyX2 = 1;
+
+        $objectiveFunction = (($properties[0]->getData()[0] * $keyX1) + ($properties[1]->getData()[0] * $keyX2)) * 1.0;
+
+        // @todo[mshumakov]: Add restrictions.
+        return $this->findSolution($objectiveFunction);
     }
 }

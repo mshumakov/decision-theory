@@ -38,5 +38,11 @@ abstract class Handler
         return new DataSetResult($list);
     }
 
+    public function findSolution(float $value): ?float
+    {
+        // @todo[mshumakov]: Add logic.
+        return $value;
+    }
+
     abstract public function handle(Variant $variant): ?float;
 }
