@@ -42,7 +42,7 @@ class MainCriterionMethodHandlerTest extends TestCase
                 new Property('x1', [22]),
                 new Property('x2', [8]),
             ])
-        ]);
+        ], ['todo restrictions']);
 
         $condition = $this->handler->process($dataSet);
 

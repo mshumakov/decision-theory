@@ -8,7 +8,7 @@ use MSdev\Component\DecisionTheory\ValueObject\Variant;
 
 class HierarchyAnalysisMethodHandler extends Handler
 {
-    public function handle(Variant $variant): ?float
+    public function handle(Variant $variant, array $restrictions): ?float
     {
         return null;
     }
