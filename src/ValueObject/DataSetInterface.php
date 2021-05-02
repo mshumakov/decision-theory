@@ -8,5 +8,7 @@ interface DataSetInterface
 {
     public function getList(): array;
 
+    public function getRestrictions(): array;
+
     public function isEmpty(): bool;
 }
