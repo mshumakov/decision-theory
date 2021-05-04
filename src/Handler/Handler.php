@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace MSdev\Component\DecisionTheory\Handler;
 
+use MSdev\Component\DecisionTheory\Builder\BuilderInterface;
 use MSdev\Component\DecisionTheory\ValueObject\DataSetInterface;
 use MSdev\Component\DecisionTheory\ValueObject\DataSetResult;
 use MSdev\Component\DecisionTheory\ValueObject\DataSetResultInterface;
+use MSdev\Component\DecisionTheory\ValueObject\FindSolutionInterface;
 use MSdev\Component\DecisionTheory\ValueObject\Variant;
 use MSdev\Component\DecisionTheory\ValueObject\VariantInterface;
 
@@ -45,11 +47,11 @@ abstract class Handler
         return new DataSetResult($list);
     }
 
-    public function findSolution(float $value): ?float
+    public function findSolution(BuilderInterface $builder): FindSolutionInterface
     {
         // @todo[mshumakov]: Add genetic algorithm.
-        return $value;
+        return $builder->find();
     }
 
-    abstract public function handle(Variant $variant, array $restrictions): ?float;
+    abstract public function handle(Variant $variant, array $restrictions): FindSolutionInterface;
 }

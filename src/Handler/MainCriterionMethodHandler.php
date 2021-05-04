@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace MSdev\Component\DecisionTheory\Handler;
 
+use MSdev\Component\DecisionTheory\Builder\MainCriterionMethodBuilder;
+use MSdev\Component\DecisionTheory\ValueObject\FindSolutionInterface;
 use MSdev\Component\DecisionTheory\ValueObject\Variant;
 
 /**
@@ -46,12 +48,10 @@ class MainCriterionMethodHandler extends Handler
      *
      * @link https://edu.susu.ru/pluginfile.php/5525155/mod_resource/content/3/L_r_02.pdf
      */
-    public function handle(Variant $variant, array $restrictions): ?float
+    public function handle(Variant $variant, array $restrictions): FindSolutionInterface
     {
-        // @todo[mshumakov]: Add builder (objective function normalization).
-        $builder = 0.0;
+        $builder = new MainCriterionMethodBuilder();
 
-        // @todo[mshumakov]: Add restrictions + change signature to abstraction.
         return $this->findSolution($builder);
     }
 }
