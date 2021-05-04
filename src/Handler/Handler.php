@@ -4,16 +4,19 @@ declare(strict_types=1);
 
 namespace MSdev\Component\DecisionTheory\Handler;
 
+use MSdev\Component\DecisionTheory\Builder\BuilderInterface;
 use MSdev\Component\DecisionTheory\ValueObject\DataSetInterface;
 use MSdev\Component\DecisionTheory\ValueObject\DataSetResult;
 use MSdev\Component\DecisionTheory\ValueObject\DataSetResultInterface;
+use MSdev\Component\DecisionTheory\ValueObject\FindSolutionInterface;
 use MSdev\Component\DecisionTheory\ValueObject\Variant;
+use MSdev\Component\DecisionTheory\ValueObject\VariantInterface;
 
 abstract class Handler
 {
     public function process(DataSetInterface $dataSet): DataSetResultInterface
     {
-        if ($dataSet->isEmpty()) {
+        if ($dataSet->isEmpty() || !$dataSet->getRestrictions()) {
             return new DataSetResult();
         }
 
@@ -22,10 +25,17 @@ abstract class Handler
 
     public function calculate(DataSetInterface $dataSet): DataSetResultInterface
     {
-        $list = [];
+        $list         = [];
+        $restrictions = $dataSet->getRestrictions();
 
+        /** @var VariantInterface $variant */
         foreach ($dataSet->getList() as $variant) {
-            $solutionValue = $this->handle($variant);
+            if (!$variant->isObjectiveFunction()) {
+                continue;
+            }
+
+            $findSolution = $this->handle($variant, $restrictions);
+            $solutionValue = $findSolution->getValue();
 
             if ((null !== $solutionValue) && !$variant->isEmpty()) {
                 $list[$variant->getKey()] = $solutionValue;
@@ -38,11 +48,11 @@ abstract class Handler
         return new DataSetResult($list);
     }
 
-    public function findSolution(float $value): ?float
+    public function findSolution(BuilderInterface $builder): FindSolutionInterface
     {
-        // @todo[mshumakov]: Add logic.
-        return $value;
+        // @todo[mshumakov]: Add genetic algorithm.
+        return $builder->find();
     }
 
-    abstract public function handle(Variant $variant): ?float;
+    abstract public function handle(Variant $variant, array $restrictions): FindSolutionInterface;
 }
