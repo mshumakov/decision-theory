@@ -6,4 +6,5 @@ namespace MSdev\Component\DecisionTheory\ValueObject;
 
 interface FindSolutionInterface
 {
+    public function getValue(): float;
 }

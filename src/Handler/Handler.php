@@ -34,7 +34,8 @@ abstract class Handler
                 continue;
             }
 
-            $solutionValue = $this->handle($variant, $restrictions);
+            $findSolution = $this->handle($variant, $restrictions);
+            $solutionValue = $findSolution->getValue();
 
             if ((null !== $solutionValue) && !$variant->isEmpty()) {
                 $list[$variant->getKey()] = $solutionValue;
