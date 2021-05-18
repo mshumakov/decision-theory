@@ -8,6 +8,7 @@ use MSdev\Component\DecisionTheory\Builder\BuilderInterface;
 use MSdev\Component\DecisionTheory\ValueObject\DataSetInterface;
 use MSdev\Component\DecisionTheory\ValueObject\DataSetResult;
 use MSdev\Component\DecisionTheory\ValueObject\DataSetResultInterface;
+use MSdev\Component\DecisionTheory\ValueObject\FindSolution;
 use MSdev\Component\DecisionTheory\ValueObject\FindSolutionInterface;
 use MSdev\Component\DecisionTheory\ValueObject\Variant;
 use MSdev\Component\DecisionTheory\ValueObject\VariantInterface;
@@ -34,7 +35,7 @@ abstract class Handler
                 continue;
             }
 
-            $findSolution = $this->handle($variant, $restrictions);
+            $findSolution  = $this->handle($variant, $restrictions);
             $solutionValue = $findSolution->getValue();
 
             if ((null !== $solutionValue) && !$variant->isEmpty()) {
@@ -48,11 +49,45 @@ abstract class Handler
         return new DataSetResult($list);
     }
 
-    public function findSolution(BuilderInterface $builder): FindSolutionInterface
+    abstract public function handle(Variant $variant, array $restrictions): FindSolutionInterface;
+
+    protected function findSolution(BuilderInterface $builder): FindSolutionInterface
     {
-        // @todo[mshumakov]: Add genetic algorithm.
-        return $builder->find();
+        $index      = 0;
+        $resultList = [];
+
+        while ($index < $builder->getMaxSizeGeneration()) {
+            for ($index = 0; $index < $builder->getMaxSizeMutation(); $index++) {
+                $resultList[$index] = $this->generationRandomValueInGivenRange(
+                    $builder->getMin(),
+                    $builder->getMax()
+                );
+            }
+
+            // Sorting (choosing the best values).
+            asort($resultList, SORT_NUMERIC);
+
+            if ($builder->isForMaxResult()) {
+                $resultList = array_reverse($resultList);
+            }
+
+            // Mutation (formation of offspring and destruction of "weak" results).
+            $sizeSlice  = count($resultList) / 2;
+            $resultList = array_slice($resultList, 0, $sizeSlice);
+
+            ++$index;
+        }
+
+        $resultValue = $resultList[0];
+
+        return new FindSolution($resultValue);
     }
 
-    abstract public function handle(Variant $variant, array $restrictions): FindSolutionInterface;
+    /**
+     * @link https://www.php.net/manual/ru/function.mt-getrandmax.php
+     */
+    private function generationRandomValueInGivenRange(int $min = 0, int $max = 1)
+    {
+        return $min + mt_rand() / mt_getrandmax() * ($max - $min);
+    }
 }
