@@ -4,52 +4,58 @@ declare(strict_types=1);
 
 namespace MSdev\Component\DecisionTheory\Builder;
 
-use MSdev\Component\DecisionTheory\ValueObject\FindSolution;
-use MSdev\Component\DecisionTheory\ValueObject\FindSolutionInterface;
-
 class Builder implements BuilderInterface
 {
-    public function find(): FindSolutionInterface
+    private const MAX_SIZE_GENERATION = 40;
+    private const MAX_SIZE_MUTATION = 1000;
+
+    /** @var int */
+    protected $min;
+    /** @var int */
+    protected $max;
+
+    public function __construct(int $min = 0, int $max = 1)
     {
-        // Take from the builder's restrictions.
-        $min            = 0;
-        $max            = 5;
-        $isForMaxResult = true;
-
-        $maxSizeGeneration = 40;
-        $maxSizeMutation   = 1000;
-
-        $resultList = [];
-
-        while ($maxSizeGeneration > 0) {
-            for ($index = 0; $index < $maxSizeMutation; $index++) {
-                $resultList[$index] = $this->generationRandomValueInGivenRange($min, $max);
-            }
-
-            // Sorting (choosing the best values).
-            asort($resultList, SORT_NUMERIC);
-
-            if ($isForMaxResult) {
-                $resultList = array_reverse($resultList);
-            }
-
-            // Mutation (formation of offspring and destruction of "weak" results).
-            $sizeSlice  = count($resultList) / 2;
-            $resultList = array_slice($resultList, 0, $sizeSlice);
-
-            --$maxSizeGeneration;
-        }
-
-        $resultValue = $resultList[0];
-
-        return new FindSolution($resultValue);
+        $this->setMin($min);
+        $this->setMax($max);
     }
 
-    /**
-     * @link https://www.php.net/manual/ru/function.mt-getrandmax.php
-     */
-    private function generationRandomValueInGivenRange(int $min = 0, int $max = 1)
+    public function getMin(): int
     {
-        return $min + mt_rand() / mt_getrandmax() * ($max - $min);
+        return $this->min;
+    }
+
+    public function setMin(int $min): Builder
+    {
+        $this->min = $min;
+
+        return $this;
+    }
+
+    public function getMax(): int
+    {
+        return $this->max;
+    }
+
+    public function setMax(int $max): Builder
+    {
+        $this->max = $max;
+
+        return $this;
+    }
+
+    public function isForMaxResult(): bool
+    {
+        return true;
+    }
+
+    public function getMaxSizeGeneration(): int
+    {
+        return self::MAX_SIZE_GENERATION;
+    }
+
+    public function getMaxSizeMutation(): int
+    {
+        return self::MAX_SIZE_MUTATION;
     }
 }
